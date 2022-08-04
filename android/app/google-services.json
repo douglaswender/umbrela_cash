@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1029799637868",
+    "project_id": "umbrela-91cc0",
+    "storage_bucket": "umbrela-91cc0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029799637868:android:de74f073bf5215ddf7f949",
+        "android_client_info": {
+          "package_name": "br.dev.douglaswender.umbrela_cash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1029799637868-jqfjjqibrd2s73a37u89rkis9f2s6844.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGOLcYOfaJCKlyMxMxeoQ2buYa6hX-dVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1029799637868-jqfjjqibrd2s73a37u89rkis9f2s6844.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
