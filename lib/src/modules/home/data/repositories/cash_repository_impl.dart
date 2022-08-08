@@ -22,10 +22,12 @@ class CashRepositoryImpl implements CashRepository {
   }
 
   @override
-  Future<Either<Failure, List<Movimentation>>> getEntries() async =>
-      await dataSource.getEntries();
+  Future<Either<Failure, List<Movimentation>>> getEntries(
+          {required String cashId}) async =>
+      await dataSource.getEntries(cashId: cashId);
 
   @override
-  Future<Either<Failure, List<Movimentation>>> getExits() =>
+  Future<Either<Failure, List<Movimentation>>> getExits(
+          {required String cashId}) =>
       throw UnimplementedError();
 }

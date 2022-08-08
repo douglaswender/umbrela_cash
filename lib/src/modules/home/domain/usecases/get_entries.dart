@@ -11,7 +11,7 @@ class GetEntries implements UseCase<List<Movimentation>, Params> {
 
   @override
   Future<Either<Failure, List<Movimentation>>> call({Params? params}) async {
-    return await repository.getEntries();
+    return await repository.getEntries(cashId: params!.caixa ?? '');
   }
 }
 

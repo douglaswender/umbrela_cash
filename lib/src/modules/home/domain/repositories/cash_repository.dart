@@ -6,6 +6,8 @@ import 'package:umbrela_cash/src/modules/home/domain/entities/movimentation.dart
 abstract class CashRepository {
   Future<Either<Failure, Cash>> getCash({required String cashId});
   Future<Either<Failure, bool>> setCash({required Cash cash});
-  Future<Either<Failure, List<Movimentation>>> getEntries();
-  Future<Either<Failure, List<Movimentation>>> getExits();
+  Future<Either<Failure, List<Movimentation>>> getEntries(
+      {required String cashId});
+  Future<Either<Failure, List<Movimentation>>> getExits(
+      {required String cashId});
 }

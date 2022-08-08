@@ -8,20 +8,20 @@ class MovimentationModel extends Movimentation {
     required super.caixa,
     required super.date,
     required super.descricao,
-    required super.value,
+    required super.valor,
   });
 
   MovimentationModel copyWith({
     String? caixa,
     Timestamp? date,
     String? descricao,
-    int? value,
+    int? valor,
   }) {
     return MovimentationModel(
       caixa: caixa ?? this.caixa,
       date: date ?? this.date,
       descricao: descricao ?? this.descricao,
-      value: value ?? this.value,
+      valor: valor ?? this.valor,
     );
   }
 
@@ -31,7 +31,7 @@ class MovimentationModel extends Movimentation {
     result.addAll({'caixa': caixa});
     result.addAll({'date': date.millisecondsSinceEpoch});
     result.addAll({'descricao': descricao});
-    result.addAll({'value': value});
+    result.addAll({'valor': valor});
 
     return result;
   }
@@ -41,7 +41,7 @@ class MovimentationModel extends Movimentation {
       caixa: map['caixa'] ?? '',
       date: map['date'],
       descricao: map['descricao'] ?? '',
-      value: map['value']?.toInt() ?? 0,
+      valor: map['valor']?.toInt() ?? 0,
     );
   }
 
@@ -52,7 +52,7 @@ class MovimentationModel extends Movimentation {
 
   @override
   String toString() {
-    return 'MovimentationModel(caixa: $caixa, date: $date, descricao: $descricao, value: $value)';
+    return 'MovimentationModel(caixa: $caixa, date: $date, descricao: $descricao, valor: $valor)';
   }
 
   @override
@@ -63,11 +63,11 @@ class MovimentationModel extends Movimentation {
         other.caixa == caixa &&
         other.date == date &&
         other.descricao == descricao &&
-        other.value == value;
+        other.valor == valor;
   }
 
   @override
   int get hashCode {
-    return caixa.hashCode ^ date.hashCode ^ descricao.hashCode ^ value.hashCode;
+    return caixa.hashCode ^ date.hashCode ^ descricao.hashCode ^ valor.hashCode;
   }
 }

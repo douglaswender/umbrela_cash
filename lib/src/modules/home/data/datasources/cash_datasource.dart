@@ -8,8 +8,10 @@ import 'package:umbrela_cash/src/modules/home/data/models/movimentation_model.da
 abstract class CashDataSource {
   Future<Either<Failure, CashModel>> getCash({required String cashId});
   Future<Either<Failure, bool>> setCash({required CashModel cash});
-  Future<Either<Failure, List<MovimentationModel>>> getEntries();
-  Future<Either<Failure, List<MovimentationModel>>> getExits();
+  Future<Either<Failure, List<MovimentationModel>>> getEntries(
+      {required String cashId});
+  Future<Either<Failure, List<MovimentationModel>>> getExits(
+      {required String cashId});
 }
 
 class CashDataSourceImpl implements CashDataSource {
@@ -43,7 +45,7 @@ class CashDataSourceImpl implements CashDataSource {
     try {
       bool response = await firestore
           .collection(kCaixa)
-          .doc('BEPKwYrEdZ1nSNtch6tA')
+          .doc(kCashId)
           .update(cash.toMap())
           .then((value) => true)
           .onError((error, stackTrace) => false);
@@ -54,18 +56,20 @@ class CashDataSourceImpl implements CashDataSource {
   }
 
   @override
-  Future<Either<Failure, List<MovimentationModel>>> getEntries() async {
+  Future<Either<Failure, List<MovimentationModel>>> getEntries(
+      {required String cashId}) async {
     try {
       // Get docs from collection reference
-      QuerySnapshot querySnapshot = await firestore.collection(kEntradas).get();
+      QuerySnapshot querySnapshot = await firestore
+          .collection(kEntradas)
+          .where('caixa', isEqualTo: cashId)
+          .get();
 
       // Get data from docs and convert map to List
       final response = querySnapshot.docs
           .map((doc) =>
               MovimentationModel.fromMap(doc.data() as Map<String, dynamic>))
           .toList();
-
-      print(response.toString());
 
       return Right(response);
     } catch (e) {
@@ -74,7 +78,24 @@ class CashDataSourceImpl implements CashDataSource {
   }
 
   @override
-  // TODO: implement getExits
-  Future<Either<Failure, List<MovimentationModel>>> getExits() =>
-      throw UnimplementedError();
+  Future<Either<Failure, List<MovimentationModel>>> getExits(
+      {required String cashId}) async {
+    try {
+      // Get docs from collection reference
+      QuerySnapshot querySnapshot = await firestore
+          .collection(kSaidas)
+          .where('caixa', isEqualTo: cashId)
+          .get();
+
+      // Get data from docs and convert map to List
+      final response = querySnapshot.docs
+          .map((doc) =>
+              MovimentationModel.fromMap(doc.data() as Map<String, dynamic>))
+          .toList();
+
+      return Right(response);
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
 }

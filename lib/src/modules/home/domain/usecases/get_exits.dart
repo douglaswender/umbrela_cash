@@ -11,7 +11,7 @@ class GetExits implements UseCase<List<Movimentation>, Params> {
 
   @override
   Future<Either<Failure, List<Movimentation>>> call({Params? params}) async {
-    return await repository.getExits();
+    return await repository.getExits(cashId: params!.caixa ?? '');
   }
 }
 
