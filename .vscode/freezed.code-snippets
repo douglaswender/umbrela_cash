@@ -5,14 +5,14 @@
         "import 'package:freezed_annotation/freezed_annotation.dart';",
         "part '${TM_FILENAME_BASE}.freezed.dart';",
         "@freezed",
-        "abstract class ${1:DataClass}State with _$${1:DataClass}State {",
-        "\tconst factory ${1:DataClass}State.regular() = _regular;",
-        "\tconst factory ${1:DataClass}State.loading() = _loading;",
-        "\tconst factory ${1:DataClass}State.empty() = _empty;",
-        "\tconst factory ${1:DataClass}State.error() = _error;",
+        "class ${1:DataClass}State with _$${1:DataClass}State {",
+        "\tconst factory ${1:DataClass}State.regular() = ${1:DataClass}StateRegular;",
+        "\tconst factory ${1:DataClass}State.loading() =  ${1:DataClass}StateLoading;",
+        "\tconst factory ${1:DataClass}State.empty() =  ${1:DataClass}StateEmpty;",
+        "\tconst factory ${1:DataClass}State.error() =  ${1:DataClass}StateError;",
         "}"
       ],
-      "description": "generate freezed state"
+      "description": "generate freezed state class"
     },
     "generate freezed event": {
       "prefix": "gfevent",
@@ -20,17 +20,19 @@
         "import 'package:freezed_annotation/freezed_annotation.dart';",
         "part '${TM_FILENAME_BASE}.freezed.dart';",
         "@freezed",
-        "abstract class ${1:DataClass}Event with _$${1:DataClass}Event {",
+        "class ${1:DataClass}Event with _$${1:DataClass}Event {",
         "}"
       ],
-      "description": "generate freezed event"
+      "description": "generate freezed event class"
     },
     "New freezed state": {
       "prefix": "nfstate",
-      "body": "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.${1:stateName}($2) = _${1/(.*)/${1:/capitalize}/};\n$3"
+      "body": "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.${1:stateName}($2) = ${1/(.*)/${1:/capitalize}/};\n$3",
+      "description": "generate freezed state class"
     },
     "New freezed event": {
       "prefix": "nfevent",
-      "body": "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.${1:eventName}() = ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}${2/(.)/${1:/capitalize}/};\n"
+      "body": "const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.${1:eventName}() = ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}${2/(.)/${1:/capitalize}/};\n",
+      "description": "generate freezed event class"
     }  
   }
