@@ -28,6 +28,6 @@ class CashRepositoryImpl implements CashRepository {
 
   @override
   Future<Either<Failure, List<Movimentation>>> getExits(
-          {required String cashId}) =>
-      throw UnimplementedError();
+          {required String cashId}) async =>
+      await dataSource.getExits(cashId: cashId);
 }

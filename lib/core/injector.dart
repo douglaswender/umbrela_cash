@@ -6,8 +6,10 @@ import 'package:umbrela_cash/src/modules/home/data/repositories/cash_repository_
 import 'package:umbrela_cash/src/modules/home/domain/repositories/cash_repository.dart';
 import 'package:umbrela_cash/src/modules/home/domain/usecases/get_cash.dart';
 import 'package:umbrela_cash/src/modules/home/domain/usecases/get_entries.dart';
+import 'package:umbrela_cash/src/modules/home/domain/usecases/get_exits.dart';
 import 'package:umbrela_cash/src/modules/home/presentation/bloc/cash_bloc.dart';
 import 'package:umbrela_cash/src/modules/home/presentation/bloc/entries_bloc.dart';
+import 'package:umbrela_cash/src/modules/home/presentation/bloc/exits_bloc.dart';
 
 class MainModule {
   final GetIt locator;
@@ -40,10 +42,14 @@ void get setupGetIt {
       .registerLazySingleton<GetCash>(() => GetCash(repository: GetIt.I.get()));
   GetIt.I.registerLazySingleton<GetEntries>(
       () => GetEntries(repository: GetIt.I.get()));
+  GetIt.I.registerLazySingleton<GetExits>(
+      () => GetExits(repository: GetIt.I.get()));
 
   // Blocs
   GetIt.I
       .registerLazySingleton<CashBloc>(() => CashBloc(getCash: GetIt.I.get()));
   GetIt.I.registerLazySingleton<EntriesBloc>(
       () => EntriesBloc(getEntries: GetIt.I.get()));
+  GetIt.I.registerLazySingleton<ExitsBloc>(
+      () => ExitsBloc(getExits: GetIt.I.get()));
 }
