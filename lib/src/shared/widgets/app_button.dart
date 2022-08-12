@@ -34,20 +34,18 @@ class _AppButtonState extends State<AppButton> {
                 widget.label,
                 style: Theme.of(context).textTheme.button,
               )
-            : Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    widget.icon!,
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    Text(
-                      widget.label,
-                      style: Theme.of(context).textTheme.button,
-                    )
-                  ],
-                ),
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  widget.icon!,
+                  const SizedBox(
+                    width: 4,
+                  ),
+                  Text(
+                    widget.label,
+                    style: Theme.of(context).textTheme.button,
+                  )
+                ],
               ));
   }
 }

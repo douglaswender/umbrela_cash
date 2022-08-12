@@ -26,6 +26,10 @@ dependencies:
   firebase_core: ^1.20.0
   cloud_firestore: ^3.4.3
   firebase_storage: ^10.3.4
+  firebase_auth: ^3.6.3
+
+  #google
+  google_sign_in: ^5.4.1
 
   #bloc
   bloc: ^8.0.3

@@ -18,31 +18,29 @@ class _LoginPageState extends State<LoginPage> {
     double maxWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: const Color(0xffE5E5E5),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 14,
-              ),
-              Image.asset('assets/img/login.png'),
-              Center(
-                child: Text(
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 14,
+                ),
+                Image.asset(
+                  'assets/img/login.png',
+                  height: 150,
+                ),
+                Text(
                   'Olá irmão!',
                   style: Theme.of(context).textTheme.headline1,
                 ),
-              ),
-              Center(
-                child: Text(
+                Text(
                   'Entre com a sua conta',
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
-                child: Form(
+                Form(
                   key: formKey,
                   child: Column(
                     children: [
@@ -55,12 +53,13 @@ class _LoginPageState extends State<LoginPage> {
                         height: 8,
                       ),
                       SizedBox(
-                        height: 94,
+                        height: 96,
                         child: InputWidget(
                           validator: (text) {
                             if (text!.length < 6 || text.isEmpty) {
                               return 'senha inválida';
                             }
+                            return null;
                           },
                           label: 'Senha',
                           isPassword: true,
@@ -73,64 +72,59 @@ class _LoginPageState extends State<LoginPage> {
                           style: Theme.of(context).textTheme.overline,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: SizedBox(
-                          width: maxWidth / 2,
-                          height: 52,
-                          child: AppButton(
-                            label: 'ENTRAR',
-                            onPressed: () {
-                              if (formKey.currentState!.validate()) {
-                                debugPrint('sucesso');
-                                context.go('/');
-                              }
-                            },
-                          ),
-                        ),
-                      ),
-                      const Text('Ou entre utilizando:'),
-                      const SizedBox(
-                        height: 14,
-                      ),
                       SizedBox(
                         width: maxWidth / 2,
                         height: 52,
                         child: AppButton(
-                            icon: Image.asset(
-                              'assets/img/google_icon.png',
-                              height: 32,
-                              width: 32,
-                            ),
-                            onPressed: () => print('login with google'),
-                            label: 'Google'),
-                      ),
-                      const SizedBox(
-                        height: 14,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          print('criar conta');
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Não tem uma conta? ',
-                              style: Theme.of(context).textTheme.bodyText2,
-                            ),
-                            Text(
-                              'Crie!',
-                              style: Theme.of(context).textTheme.overline,
-                            ),
-                          ],
+                          label: 'ENTRAR',
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              debugPrint('sucesso');
+                              context.go('/');
+                            }
+                          },
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-            ],
+                const Text('Ou entre utilizando:'),
+                const SizedBox(
+                  height: 14,
+                ),
+                SizedBox(
+                  width: maxWidth / 2,
+                  height: 52,
+                  child: AppButton(
+                      icon: Image.asset(
+                        'assets/img/google_icon.png',
+                      ),
+                      onPressed: () => print('login with google'),
+                      label: 'Google'),
+                ),
+                const SizedBox(
+                  height: 14,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    print('criar conta');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Não tem uma conta? ',
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                      Text(
+                        'Crie!',
+                        style: Theme.of(context).textTheme.overline,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
